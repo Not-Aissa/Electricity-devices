@@ -5,49 +5,57 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/main.scss" />
-    <title>Vite + Scss + TypeScript</title>
+    <title>Electricity devices</title>
   </head>
   <body class="light">
     <main id="app" class="container">
-      <header>
-        <section class="logo-section">
-          <a class="vite-link" href="https://vitejs.dev/" target="_blank">
-            <div class="vite">
-              <img src="/vite.svg" alt="vite" />
+      <header class="pc-header">
+        <section class="monitor-section">
+          <div class="monitor">
+            <div class="content">
+              <p id="monitor_status_elm"></p>
             </div>
-          </a>
 
-          <a class="scss-link" href="https://sass-lang.com/" target="_blank">
-            <div class="scss">
-              <img src="/scss.svg" alt="scss" />
-            </div>
-          </a>
-
-          <a
-            class="typescript-link"
-            href="https://www.typescriptlang.org/"
-            target="_blank"
-          >
-            <div class="typescript">
-              <img src="/typescript.svg" alt="typescript" />
-            </div>
-          </a>
+            <div id="monitor_status" class="monitor-status"></div>
+          </div>
         </section>
 
-        <section class="title-section">
-          <p class="text">Vite + Scss + TypeScript</p>
-        </section>
+        <section class="parts-section">
+          <div id="computer_power" class="computer-power">
+            <img src="./power.svg" alt="power" />
 
-        <section class="counter-section">
-          <button id="counter_btn">Count is <span id="count"></span></button>
+            <div id="computer_status" class="computer-status"></div>
+          </div>
+
+          <div class="fan">
+            <img id="fan_img" src="./fan.jpg" alt="fan" />
+          </div>
         </section>
       </header>
 
-      <footer>
-        <p class="content">
-          Developed by <span class="developer">Aissa Bedr</span>
-        </p>
-      </footer>
+      <header class="electricity-header">
+        <section class="electricity-tracker-section">
+          <div class="electricity-container">
+            <div id="electricity_power" class="electricity-power">
+              <img src="./power.svg" alt="power" />
+
+              <div id="electricity_status" class="electricity-status"></div>
+            </div>
+
+            <div class="electricity-content">
+              <p>Power <span id="electricity_status_elm"></span></p>
+
+              <img src="./power-zap.svg" alt="power-zap" />
+            </div>
+          </div>
+
+          <div class="cables">
+            <div class="cable"></div>
+
+            <div class="cable"></div>
+          </div>
+        </section>
+      </header>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

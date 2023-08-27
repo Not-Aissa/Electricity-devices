@@ -1,26 +1,45 @@
+import Computer from "./ts/helpers/classes/Computer";
 import dom from "./ts/helpers/classes/Dom";
-import Button from "./ts/types/elements/Button";
-import Span from "./ts/types/elements/Span";
+import Electricity from "./ts/helpers/classes/Electricity";
+import ElectricityTracker from "./ts/helpers/classes/ElectricityTracker";
+import ElectricityTrackerUI from "./ts/helpers/classes/ElectricityTrackerUI";
+import Monitor from "./ts/helpers/classes/Monitor";
+import MonitorUI from "./ts/helpers/classes/MonitorUI";
+import Div from "./ts/types/elements/Div";
 
-const counterButton = dom.select<Button>("#counter_btn");
-const counterElm = dom.select<Span>("#count");
+const monitorStatus = dom.select<Div>("#monitor_status");
+const computerPower = dom.select<Div>("#computer_power");
+const electricityPower = dom.select<Div>("#electricity_power");
 
-let count = 0;
+const electricity = new Electricity();
+
+const electricityTracker = new ElectricityTracker({ electricity });
+
+const monitor = new Monitor({ electricity, electricityTracker });
+
+const computer = new Computer({ electricity, electricityTracker });
 
 window.addEventListener("load", () => {
-  updateCount();
+  MonitorUI.updateMonitorStatus(monitor);
+  ElectricityTrackerUI.updateDevicesStatus(electricity);
 });
 
-counterButton.addEventListener("click", increaseCount);
+monitorStatus.addEventListener("click", () => {
+  if (monitor.isRunning) monitor.off();
+  else monitor.on();
+});
 
-function increaseCount(): number {
-  count += 1;
+computerPower.addEventListener("click", () => {
+  if (computer.isRunning) {
+    computer.off();
+    monitor.off();
+  } else {
+    computer.on();
+    monitor.on();
+  }
+});
 
-  updateCount();
-
-  return count;
-}
-
-function updateCount(): void {
-  counterElm.textContent = `${count}`;
-}
+electricityPower.addEventListener("click", () => {
+  if (electricity.electricityStatus === "off") electricityTracker.on();
+  else electricityTracker.off();
+});
